@@ -1,6 +1,7 @@
 from datetime import datetime
 
 class Vehicle:
+    color = 'white'
     def __init__(self, name, max_speed, mileage):
         self.name = name
         self.max_speed = max_speed
@@ -20,7 +21,7 @@ class Vehicle:
 
     def category(self):
         if self.__capacity[self.name] <= 10:
-             return 'passenger car'
+            return 'passenger car'
         elif 10 < self.__capacity[self.name] <= 20:
             return 'minibus'
         elif self.__capacity[self.name] > 20:
@@ -33,6 +34,7 @@ class Vehicle:
 
 
 class Bus(Vehicle):
+    color = 'green'
     def __init__(self, name, max_speed, mileage, assembled_date):
         assert type(assembled_date) == str, 'Input date as string in compliance with YYYY-MM-DD format'
         super().__init__(name, max_speed, mileage)
@@ -43,6 +45,7 @@ class Bus(Vehicle):
     def age(self):
         age = datetime.now() - self.assembled_date
         return f'{age.days} days have passed since its first assembly.'
+
 
 
 v = Vehicle('Audi', 220, 150000)
