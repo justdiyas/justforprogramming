@@ -1,4 +1,5 @@
-print('Hello, bright future!')
-print('I should work hard to make bright future happen.')
-print('Let\'s go on')
+def greeting():
+    name = input('Enter your name: ').capitalize()
+    return f'Hi, {name}! Work hard as it pays off and do what you are crazy about.'
 
+print(greeting())
