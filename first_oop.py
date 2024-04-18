@@ -43,6 +43,7 @@ class Vehicle:
 
         for item in data_converted:
             Vehicle(name=item['name'], max_speed=item['max_speed'], mileage=item['mileage'])
+        print(f'{len(cls.catalog)} of data has been uploaded.')
 
 
 class Bus(Vehicle):
@@ -63,4 +64,3 @@ class Bus(Vehicle):
 v = Vehicle('Audi', 220, 150000)
 b = Bus('Kia', 180, 75000, '2024-1-1')
 v.upload_data_from_csv()
-print(v.catalog)
