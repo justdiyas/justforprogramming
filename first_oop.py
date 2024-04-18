@@ -1,13 +1,16 @@
 from datetime import datetime
+import csv
 
 class Vehicle:
     color = 'white'
+    catalog = []
+
     def __init__(self, name, max_speed, mileage):
         self.name = name
         self.max_speed = max_speed
         self.mileage = mileage
         self.__capacity = {}
-
+        Vehicle.catalog.append({'name': self.name, 'max_speed': self.max_speed, 'mileage': self.mileage})
 
     # @property
     # def capacity(self):
@@ -32,6 +35,15 @@ class Vehicle:
     def __repr__(self):
         return self.name
 
+    @classmethod
+    def upload_data_from_csv(cls):
+        with open('cars.csv', 'r') as f:
+            data = csv.DictReader(f)
+            data_converted = list(data)
+
+        for item in data_converted:
+            Vehicle(name=item['name'], max_speed=item['max_speed'], mileage=item['mileage'])
+
 
 class Bus(Vehicle):
     color = 'green'
@@ -50,3 +62,5 @@ class Bus(Vehicle):
 
 v = Vehicle('Audi', 220, 150000)
 b = Bus('Kia', 180, 75000, '2024-1-1')
+v.upload_data_from_csv()
+print(v.catalog)
