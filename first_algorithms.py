@@ -21,14 +21,10 @@ shuffle(cards)
 #that is to check all answers from 0 until answer is found and return -1 if target is not in the list.
 def locate_card(cards, target):
     index = 0
-    found = False
-    while not found:
+    while index < len(cards):
         if cards[index] == target:
-            found = True
             return index
         index += 1
-        if index == len(cards):
-            return -1
-
+    return -1
 
 print(locate_card(cards, 10))
