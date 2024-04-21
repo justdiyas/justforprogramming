@@ -27,4 +27,21 @@ def locate_card(cards, target):
         index += 1
     return -1
 
-print(locate_card(cards, 10))
+# print(locate_card(cards, 10))
+
+#solving above problem using binary search algorithm
+nums = sorted([1, 4, 5, 7, 2, 3, 18, 15, 10, 77, 85])
+def locate_card(cards, target):
+    low_index = 0
+    high_index = len(cards) - 1
+    while low_index <= high_index:
+        half = (low_index + high_index) // 2
+        if cards[half] == target:
+            return half
+        elif target > cards[half]:
+            low_index = half + 1
+        else:
+            high_index = half - 1
+    return -1
+
+print(locate_card(nums, 85))
