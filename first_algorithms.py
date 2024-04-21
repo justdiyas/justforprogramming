@@ -44,4 +44,17 @@ def locate_card(cards, target):
             high_index = half - 1
     return -1
 
-print(locate_card(nums, 85))
+
+def locate_card(cards, low, high, target):
+    half = (low + high) // 2
+    if cards[half] == target:
+        return half
+    elif target > cards[half] and low <= high:
+        return locate_card(cards, half+1, high, target)
+    elif target < cards[half] and low <= high:
+        return locate_card(cards, low, half-1, target)
+    else:
+        return -1
+
+print(locate_card(nums, 0, len(nums)-1, -10))
+print(nums)
