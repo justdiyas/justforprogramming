@@ -29,31 +29,46 @@ def locate_card(cards, target):
 
 # print(locate_card(cards, 10))
 
+#checking if in a list of cards there are several repeated cards
+def check_location (cards, target, half):
+    cards = sorted(cards)
+    if target == cards[half]:
+        if half - 1 >= 0 and cards[half-1] == target:
+            return 'left'
+        else:
+            return 'found'
+    if target > cards[half]:
+        return 'right'
+    else:
+        return 'left'
 #solving above problem using binary search algorithm
+
 nums = sorted([1, 4, 5, 7, 2, 3, 18, 15, 10, 77, 85])
 def locate_card(cards, target):
+    cards = sorted(cards)
     low_index = 0
     high_index = len(cards) - 1
     while low_index <= high_index:
         half = (low_index + high_index) // 2
-        if cards[half] == target:
+        result = check_location(cards, target, half)
+        if result == 'found':
             return half
-        elif target > cards[half]:
+        elif result == 'right':
             low_index = half + 1
-        else:
+        elif result == 'left':
             high_index = half - 1
     return -1
 
 #solving a problem using binary search method but with the help of recursion
-def locate_card(cards, low, high, target):
-    half = (low + high) // 2
-    if cards[half] == target:
-        return half
-    elif target > cards[half] and low <= high:
-        return locate_card(cards, half+1, high, target)
-    elif target < cards[half] and low <= high:
-        return locate_card(cards, low, half-1, target)
-    else:
-        return -1
+# def locate_card(cards, low, high, target):
+#     half = (low + high) // 2
+#     if cards[half] == target:
+#         return half
+#     elif target > cards[half] and low <= high:
+#         return locate_card(cards, half+1, high, target)
+#     elif target < cards[half] and low <= high:
+#         return locate_card(cards, low, half-1, target)
+#     else:
+#         return -1
 
-print(locate_card(nums, 0, len(nums)-1, -10))
+print(locate_card(cards, 76))
