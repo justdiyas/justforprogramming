@@ -44,7 +44,7 @@ def locate_card(cards, target):
             high_index = half - 1
     return -1
 
-
+#solving a problem using binary search method but with the help of recursion
 def locate_card(cards, low, high, target):
     half = (low + high) // 2
     if cards[half] == target:
@@ -57,4 +57,3 @@ def locate_card(cards, low, high, target):
         return -1
 
 print(locate_card(nums, 0, len(nums)-1, -10))
-print(nums)
