@@ -6,8 +6,13 @@ def locate_card(cards, target):
     pass
 
 
-#test cases for different scenarios including edge cases
-tests = []
+#below might be the list of dictionary tests cases for different scenarios including edge cases.
+#test cases may include an empty list of cards, a list that contains repeated cards, a list that contains no target card etc.
+tests = [
+    {'input': {'cards': [0, 4, 6, 7, 10, 12, 25], 'target': 4}, 'output': 4},
+    {'input': {'cards': [0, 0, 3, 5, 7, 7, 9, 9, 10, 17, 32], 'target': 9}, 'output': 9},
+    {'input': {'cards': [1, 2, 6, 8, 13, 19, 20], 'target': 11}, 'output': 11},
+]
 
 #running a function for a test case
 # locate_card(**tests[0]['input']) == tests[0]['output'])
@@ -37,7 +42,7 @@ def check_location (cards, target, half):
             return 'left'
         else:
             return 'found'
-    if target > cards[half]:
+    elif target > cards[half]:
         return 'right'
     else:
         return 'left'
