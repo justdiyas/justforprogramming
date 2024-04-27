@@ -23,9 +23,9 @@ cards = [i for i in range(50)]
 shuffle(cards)
 
 
-#Solution 1 to Problem 1. Brute force method that executes linear search algorithm,
+#Solution 1 to Problem 1: Brute force method that executes linear search algorithm,
 #that is to check all answers from 0 until answer is found and return -1 if target is not in the list.
-def locate_card(cards, target):
+def locate_card_bf(cards, target):
     index = 0
     while index < len(cards):
         if cards[index] == target:
@@ -33,10 +33,10 @@ def locate_card(cards, target):
         index += 1
     return -1
 
-# print(locate_card(cards, 10))
+# print(locate_card_bf(cards, 10))
 
 #checking if in a list of cards there are several repeated cards
-def check_location (cards, target, half):
+def check_location(cards, target, half):
     cards = sorted(cards)
     if target == cards[half]:
         if half - 1 >= 0 and cards[half-1] == target:
@@ -48,9 +48,9 @@ def check_location (cards, target, half):
     else:
         return 'left'
 
-#Solution 2 to Problem 1. Binary search algorithm
+#Solution 2 to Problem 1: Binary search algorithm
 nums = sorted([1, 4, 5, 7, 2, 3, 18, 15, 10, 77, 85])
-def locate_card(cards, target):
+def locate_card_bs(cards, target):
     cards = sorted(cards)
     low_index = 0
     high_index = len(cards) - 1
@@ -65,28 +65,26 @@ def locate_card(cards, target):
             high_index = half - 1
     return -1
 
-#Solution 2.1 to Problem 1. Binary search method but with the help of recursion
-# def locate_card(cards, low, high, target):
+#Solution 2.1 to Problem 1: Binary search method but with the help of recursion
+# def locate_card_bs(cards, low, high, target):
 #     half = (low + high) // 2
 #     if cards[half] == target:
 #         return half
 #     elif target > cards[half] and low <= high:
-#         return locate_card(cards, half+1, high, target)
+#         return locate_card_bs(cards, half+1, high, target)
 #     elif target < cards[half] and low <= high:
-#         return locate_card(cards, low, half-1, target)
+#         return locate_card_bs(cards, low, half-1, target)
 #     else:
 #         return -1
 
-# print(locate_card(cards, 76))
+# print(locate_card_bs(cards, 76))
 
 
 #Problem 2. Given a rotated sorted list, find a number of times the given list was rotated. Rotated sorted list does not have a repeated numbers.
+#E.g.: [20, 0, 6, 8, 10, 17, 18, 19] was rotated 1 time from originally being [0, 6, 8, 10, 17, 18, 19, 20]
 
-numbers_rotated = [22, 27, 30, 4, 7, 8, 11, 15, 19]
-numbers_not_rotated = [i for i in range(10)]
-
-#Solution 1. Brute force method
-def rotation_times(nums):
+#Solution 1 to Problem 2: Brute force method
+def rotation_times_bf(nums):
     index = 0
     while index < len(nums):
         if index > 0 and nums[index] < nums[index-1]:
@@ -94,5 +92,33 @@ def rotation_times(nums):
         index += 1
     return 0
 
-print(rotation_times(numbers_rotated))
-print(rotation_times(numbers_not_rotated))
+# print(rotation_times_bf(numbers_not_rotated))
+# print(rotation_times_bf(numbers_rotated))
+
+#Solution 2 to Problem 2: Binary search algorithm
+def rotation_times_bs(nums):
+    low = 0
+    high = len(nums)-1
+    while low <= high:
+        half = (low + high) // 2
+        if nums[half] < nums[half-1]:
+            return half
+        elif nums[half] < nums[high]:
+            high = half - 1
+        else:
+            low = half + 1
+    return 0
+
+numbers_empty = []
+numbers_rotated = [22, 27, 30, 4, 7, 8, 11, 15, 19]
+numbers_rotated_1 = [3, 1]
+numbers_rotated_2 = [i for i in range(20) if i % 2 != 0] + [0]
+numbers_not_rotated = [i for i in range(10)]
+
+
+#Below testing solution for different scenarios
+# print(rotation_times_bs(numbers_empty))
+# print(rotation_times_bs(numbers_rotated))
+# print(rotation_times_bs(numbers_rotated_1))
+# print(rotation_times_bs(numbers_rotated_2))
+# print(rotation_times_bs(numbers_not_rotated))
