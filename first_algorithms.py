@@ -1,7 +1,8 @@
 from random import shuffle
 
 
-#a function that locates a target card in a given set of cards
+#Problem 1. Find a target card in a given list of sorted cards.
+# A function that locates a target card in a given set of cards
 def locate_card(cards, target):
     pass
 
@@ -22,7 +23,7 @@ cards = [i for i in range(50)]
 shuffle(cards)
 
 
-#solving a problem using brute force solution that executes linear search algorithm,
+#Solution 1 to Problem 1. Brute force method that executes linear search algorithm,
 #that is to check all answers from 0 until answer is found and return -1 if target is not in the list.
 def locate_card(cards, target):
     index = 0
@@ -46,8 +47,8 @@ def check_location (cards, target, half):
         return 'right'
     else:
         return 'left'
-#solving above problem using binary search algorithm
 
+#Solution 2 to Problem 1. Binary search algorithm
 nums = sorted([1, 4, 5, 7, 2, 3, 18, 15, 10, 77, 85])
 def locate_card(cards, target):
     cards = sorted(cards)
@@ -64,7 +65,7 @@ def locate_card(cards, target):
             high_index = half - 1
     return -1
 
-#solving a problem using binary search method but with the help of recursion
+#Solution 2.1 to Problem 1. Binary search method but with the help of recursion
 # def locate_card(cards, low, high, target):
 #     half = (low + high) // 2
 #     if cards[half] == target:
@@ -76,4 +77,22 @@ def locate_card(cards, target):
 #     else:
 #         return -1
 
-print(locate_card(cards, 76))
+# print(locate_card(cards, 76))
+
+
+#Problem 2. Given a rotated sorted list, find a number of times the given list was rotated. Rotated sorted list does not have a repeated numbers.
+
+numbers_rotated = [22, 27, 30, 4, 7, 8, 11, 15, 19]
+numbers_not_rotated = [i for i in range(10)]
+
+#Solution 1. Brute force method
+def rotation_times(nums):
+    index = 0
+    while index < len(nums):
+        if index > 0 and nums[index] < nums[index-1]:
+            return index
+        index += 1
+    return 0
+
+print(rotation_times(numbers_rotated))
+print(rotation_times(numbers_not_rotated))
