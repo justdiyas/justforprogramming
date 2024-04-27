@@ -122,3 +122,65 @@ numbers_not_rotated = [i for i in range(10)]
 # print(rotation_times_bs(numbers_rotated_1))
 # print(rotation_times_bs(numbers_rotated_2))
 # print(rotation_times_bs(numbers_not_rotated))
+
+
+#Problem 3. Create a data structure that is able to store 100 million user profiles including unique username, name and email.
+#Data structure must be editable.
+
+#Creating User class that instantiates instances
+class User:
+    def __init__(self, username, name, email):
+        self.username = username
+        self.name = name
+        self.email = email
+
+    def __repr__(self):
+        return f'Username: {self.username}, Name: {self.name}, Email: {self.email}'
+
+#User instances
+user1 = User('justdiyas', 'Diyas', 'iyemberidyev@gmail.com')
+user2 = User('marathoner', 'Eliud', 'eliud.kipchoge@gmail.com')
+user3 = User('skyrunner', 'Kylian', 'kylian.jornet@gmail.com')
+user4 = User('microsofter', 'Bill', 'bill.gates@gmail.com')
+user5 = User('ggg', 'Genadiy', 'genedaiy.golovkin@gmail.com')
+user6 = User('amazoner', 'Jeff', 'jeff.bezos@gmail.com')
+user7 = User('investor', 'Warren', 'warren.baffet@gmail.com')
+
+users = [user1, user2, user3, user4, user5, user6, user7]
+
+#UserDatabaclass serves as a data structure that collects user instances to store it
+class UserDatabase:
+    def __init__(self):
+        self.users = []
+
+    def insert(self, user):
+        i = 0
+        while i < len(self.users):
+            if self.users[i].username > user.username:
+                break
+            i += 1
+        self.users.insert(i, user)
+
+    def find(self, username):
+        for user in self.users:
+            if user.username == username:
+                return user
+
+    def update(self, user):
+        target = self.find(user.username)
+        target.name, target.email = user.name, user.email
+
+    def list_all(self):
+        return self.users
+
+
+
+udb = UserDatabase()
+for i in users:
+    udb.insert(i)
+
+print(udb.list_all())
+print(udb.find('investor'))
+user8 = User('ggg', 'Gena', 'gena.golovkin@gmail.com')
+udb.update(user8)
+print(udb.list_all())
