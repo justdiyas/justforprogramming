@@ -148,8 +148,9 @@ user7 = User('investor', 'Warren', 'warren.baffet@gmail.com')
 
 users = [user1, user2, user3, user4, user5, user6, user7]
 
-#UserDatabaclass serves as a data structure that collects user instances to store it
-class UserDatabase:
+#Solution 1 to Problem 3: UserDatabase class serves as a data structure that collects user instances to store it.
+# Class methods in it are implemented by a brute force way.
+class UserDatabaseBF:
     def __init__(self):
         self.users = []
 
@@ -175,12 +176,31 @@ class UserDatabase:
 
 
 
-udb = UserDatabase()
+udb = UserDatabaseBF()
 for i in users:
     udb.insert(i)
 
-print(udb.list_all())
-print(udb.find('investor'))
-user8 = User('ggg', 'Gena', 'gena.golovkin@gmail.com')
-udb.update(user8)
-print(udb.list_all())
+# print(udb.list_all())
+# print(udb.find('investor'))
+# user8 = User('ggg', 'Gena', 'gena.golovkin@gmail.com')
+# udb.update(user8)
+# print(udb.list_all())
+
+
+#Solution 2 to Problem 3: Methods use binary search algorithm.
+class UserDatabaseBS(UserDatabaseBF):
+    def __init__(self):
+        super().__init__()
+        self.users = []
+
+    def insert(self, user):
+        pass
+
+    def find(self, username):
+        pass
+
+    def update(self, user):
+        pass
+
+    def list_all(self):
+        return self.users
