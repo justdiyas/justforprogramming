@@ -204,3 +204,28 @@ class UserDatabaseBS(UserDatabaseBF):
 
     def list_all(self):
         return self.users
+
+#Creating binary tree using class
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def __str__(self):
+        return str(self.value)
+
+
+node0 = BinaryTree(0)
+node1 = BinaryTree(7)
+node2 = BinaryTree(5)
+node3 = BinaryTree(10)
+node4 = BinaryTree(15)
+
+node0.left = node2
+node0.right = node1
+node0.left.left = node3
+node0.left.right = node4
+
+tree = node0
+print(tree.value, tree.left, tree.right, tree.left.left, tree.left.right, tree.right.left, tree.right.right)
