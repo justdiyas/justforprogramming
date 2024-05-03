@@ -176,15 +176,15 @@ class UserDatabaseBF:
 
 
 
-udb = UserDatabaseBF()
-for i in users:
-    udb.insert(i)
-
-# print(udb.list_all())
-# print(udb.find('investor'))
+# db_bf = UserDatabaseBF()
+# for i in users:
+#     db_bf.insert(i)
+#
+# print(db_bf.list_all())
+# print(db_bf.find('investor'))
 # user8 = User('ggg', 'Gena', 'gena.golovkin@gmail.com')
-# udb.update(user8)
-# print(udb.list_all())
+# db_bf.update(user8)
+# print(db_bf.list_all())
 
 
 #Solution 2 to Problem 3: Methods use binary search algorithm.
@@ -194,16 +194,38 @@ class UserDatabaseBS(UserDatabaseBF):
         self.users = []
 
     def insert(self, user):
-        pass
+        i = 0
+        while i < len(self.users):
+            if self.users[i].username > user.username:
+                break
+            i += 1
+        self.users.insert(i, user)
 
     def find(self, username):
-        pass
+        low = 0
+        high = len(self.users)
+        while low <= high:
+            mid = (low + high) // 2
+            if self.users[mid].username == username:
+                return self.users[mid]
+            elif self.users[mid].username > username:
+                high = mid - 1
+            else:
+                low = mid + 1
+        return f'{username} is not found!'
 
     def update(self, user):
         pass
 
     def list_all(self):
         return self.users
+
+db_bs = UserDatabaseBS()
+for i in users:
+    db_bs.insert(i)
+
+print(db_bs.list_all())
+print(db_bs.find('justdiyas'))
 
 #Creating binary tree using class
 class BinaryTree:
@@ -216,16 +238,16 @@ class BinaryTree:
         return str(self.value)
 
 
-node0 = BinaryTree(0)
-node1 = BinaryTree(7)
-node2 = BinaryTree(5)
-node3 = BinaryTree(10)
-node4 = BinaryTree(15)
-
-node0.left = node2
-node0.right = node1
-node0.left.left = node3
-node0.left.right = node4
-
-tree = node0
-print(tree.value, tree.left, tree.right, tree.left.left, tree.left.right, tree.right.left, tree.right.right)
+# node0 = BinaryTree(0)
+# node1 = BinaryTree(7)
+# node2 = BinaryTree(5)
+# node3 = BinaryTree(10)
+# node4 = BinaryTree(15)
+#
+# node0.left = node2
+# node0.right = node1
+# node0.left.left = node3
+# node0.left.right = node4
+#
+# tree = node0
+# print(tree.value, tree.left, tree.right, tree.left.left, tree.left.right, tree.right.left, tree.right.right)
