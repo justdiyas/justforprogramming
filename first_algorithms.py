@@ -250,13 +250,12 @@ node0.left = node2
 node0.right = node1
 node0.left.left = node3
 node0.left.right = node4
-tree = node0
 # print(tree.value, tree.left, tree.right, tree.left.left, tree.left.right, tree.right.left, tree.right.right)
 
 #Creating a helper function that will connect nodes via recursion
 nodes = (((9, 7, None), 5, (8, 10, 9)), 0, ((2, 3, None), 1, (None, 4, None)))
 def connect_nodes(data):
-    print(data)
+    # print(data)
     if isinstance(data, tuple) and len(data) == 3:
         node = BinaryTree(data[1])
         node.left = connect_nodes(data[0])
@@ -267,4 +266,18 @@ def connect_nodes(data):
         node = BinaryTree(data)
     return node
 
-print(connect_nodes(nodes))
+tree = connect_nodes(nodes)
+
+#Displaying nodes of the above created tree
+def display_node_values(node, space='\t', level=0):
+    if node is None:
+        print(space * level + 'x')
+        return
+    if node.left is None and node.right is None:
+        print(space * level + str(node.value))
+        return
+    display_node_values(node.right, space, level+1)
+    print(space * level + str(node.value))
+    display_node_values(node.left, space, level+1)
+
+display_node_values(tree)
