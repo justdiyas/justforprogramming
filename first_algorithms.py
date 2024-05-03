@@ -215,7 +215,8 @@ class UserDatabaseBS(UserDatabaseBF):
         return f'{username} is not found!'
 
     def update(self, user):
-        pass
+        new = self.find(user.username)
+        new.name, new.email = input(f'Input a new name for {new.username}: '), input(f'Input a new email for {new.username}: ')
 
     def list_all(self):
         return self.users
@@ -226,6 +227,9 @@ for i in users:
 
 print(db_bs.list_all())
 print(db_bs.find('justdiyas'))
+
+db_bs.update(user5)
+print(db_bs.list_all())
 
 #Creating binary tree using class
 class BinaryTree:
