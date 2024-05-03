@@ -221,15 +221,14 @@ class UserDatabaseBS(UserDatabaseBF):
     def list_all(self):
         return self.users
 
-db_bs = UserDatabaseBS()
-for i in users:
-    db_bs.insert(i)
-
-print(db_bs.list_all())
-print(db_bs.find('justdiyas'))
-
-db_bs.update(user5)
-print(db_bs.list_all())
+# db_bs = UserDatabaseBS()
+# for i in users:
+#     db_bs.insert(i)
+#
+# print(db_bs.list_all())
+# print(db_bs.find('justdiyas'))
+# db_bs.update(user5)
+# print(db_bs.list_all())
 
 #Creating binary tree using class
 class BinaryTree:
@@ -241,17 +240,31 @@ class BinaryTree:
     def __str__(self):
         return str(self.value)
 
-
-# node0 = BinaryTree(0)
-# node1 = BinaryTree(7)
-# node2 = BinaryTree(5)
-# node3 = BinaryTree(10)
-# node4 = BinaryTree(15)
-#
-# node0.left = node2
-# node0.right = node1
-# node0.left.left = node3
-# node0.left.right = node4
-#
-# tree = node0
+#Creating nodes to connect them manuall with each order to build a binary tree
+node0 = BinaryTree(0)
+node1 = BinaryTree(7)
+node2 = BinaryTree(5)
+node3 = BinaryTree(10)
+node4 = BinaryTree(15)
+node0.left = node2
+node0.right = node1
+node0.left.left = node3
+node0.left.right = node4
+tree = node0
 # print(tree.value, tree.left, tree.right, tree.left.left, tree.left.right, tree.right.left, tree.right.right)
+
+#Creating a helper function that will connect nodes via recursion
+nodes = (((9, 7, None), 5, (8, 10, 9)), 0, ((2, 3, None), 1, (None, 4, None)))
+def connect_nodes(data):
+    print(data)
+    if isinstance(data, tuple) and len(data) == 3:
+        node = BinaryTree(data[1])
+        node.left = connect_nodes(data[0])
+        node.right = connect_nodes(data[2])
+    elif data is None:
+        node = None
+    else:
+        node = BinaryTree(data)
+    return node
+
+print(connect_nodes(nodes))
