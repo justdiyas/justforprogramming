@@ -1,9 +1,11 @@
 class Employee:
-    def __init__(self, first, last, profession, pay):
+    def __init__(self, id, first, last, profession, pay, car_id):
+        self.id = id
         self.first = first
         self.last = last
         self.profession = profession
         self.pay = pay
+        self.car_id = None
 
     @property
     def email(self):
