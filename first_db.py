@@ -4,11 +4,12 @@ from employee import Employee
 connection = sqlite3.connect('employee.db')
 cursor = connection.cursor()
 
-# cursor.execute("""CREATE TABLE employees
-#     (first_name VARCHAR(50),
-#     last_name VARCHAR(50),
-#     profession VARCHAR(70),
-#     pay INTEGER);""")
+cursor.execute("""CREATE TABLE employees
+    (id INTEGER NOT NULL PRIMARY KEY AUTO INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    profession VARCHAR(70) NOT NULL,
+    pay INTEGER NOT NULL);""")
 
 def insert_emp(emp):
     with connection:
